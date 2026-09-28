@@ -1,0 +1,271 @@
+========================================
+LAB 1 - TIKI JSON -> POSTGRESQL
+========================================
+Started at: 2026-09-28 01:25:18
+Project dir: /home/eve/Desktop/lab1
+Log file: /home/eve/Desktop/lab1/logs/load_products_20260928_012518.log
+========================================
+
+Reading JSON files from: /home/eve/Desktop/project2/tiki_crawl/output
+Read products_001.json: 1000 products
+Read products_002.json: 1000 products
+Read products_003.json: 1000 products
+Read products_004.json: 1000 products
+Read products_005.json: 1000 products
+Read products_006.json: 1000 products
+Read products_007.json: 1000 products
+Read products_008.json: 1000 products
+Read products_009.json: 1000 products
+Read products_010.json: 1000 products
+Read products_011.json: 1000 products
+Read products_012.json: 1000 products
+Read products_013.json: 1000 products
+Read products_014.json: 1000 products
+Read products_015.json: 1000 products
+Read products_016.json: 1000 products
+Read products_017.json: 1000 products
+Read products_018.json: 1000 products
+Read products_019.json: 1000 products
+Read products_020.json: 1000 products
+Read products_021.json: 1000 products
+Read products_022.json: 1000 products
+Read products_023.json: 1000 products
+Read products_024.json: 1000 products
+Read products_025.json: 1000 products
+Read products_026.json: 1000 products
+Read products_027.json: 1000 products
+Read products_028.json: 1000 products
+Read products_029.json: 1000 products
+Read products_030.json: 1000 products
+Read products_031.json: 1000 products
+Read products_032.json: 1000 products
+Read products_033.json: 1000 products
+Read products_034.json: 1000 products
+Read products_035.json: 1000 products
+Read products_036.json: 1000 products
+Read products_037.json: 1000 products
+Read products_038.json: 1000 products
+Read products_039.json: 1000 products
+Read products_040.json: 1000 products
+Read products_041.json: 1000 products
+Read products_042.json: 1000 products
+Read products_043.json: 1000 products
+Read products_044.json: 1000 products
+Read products_045.json: 1000 products
+Read products_046.json: 1000 products
+Read products_047.json: 1000 products
+Read products_048.json: 1000 products
+Read products_049.json: 1000 products
+Read products_050.json: 1000 products
+Read products_051.json: 1000 products
+Read products_052.json: 1000 products
+Read products_053.json: 1000 products
+Read products_054.json: 1000 products
+Read products_055.json: 1000 products
+Read products_056.json: 1000 products
+Read products_057.json: 1000 products
+Read products_058.json: 1000 products
+Read products_059.json: 1000 products
+Read products_060.json: 1000 products
+Read products_061.json: 1000 products
+Read products_062.json: 1000 products
+Read products_063.json: 1000 products
+Read products_064.json: 1000 products
+Read products_065.json: 1000 products
+Read products_066.json: 1000 products
+Read products_067.json: 1000 products
+Read products_068.json: 1000 products
+Read products_069.json: 1000 products
+Read products_070.json: 1000 products
+Read products_071.json: 1000 products
+Read products_072.json: 1000 products
+Read products_073.json: 1000 products
+Read products_074.json: 1000 products
+Read products_075.json: 1000 products
+Read products_076.json: 1000 products
+Read products_077.json: 1000 products
+Read products_078.json: 1000 products
+Read products_079.json: 1000 products
+Read products_080.json: 1000 products
+Read products_081.json: 1000 products
+Read products_082.json: 1000 products
+Read products_083.json: 1000 products
+Read products_084.json: 1000 products
+Read products_085.json: 1000 products
+Read products_086.json: 1000 products
+Read products_087.json: 1000 products
+Read products_088.json: 1000 products
+Read products_089.json: 1000 products
+Read products_090.json: 1000 products
+Read products_091.json: 1000 products
+Read products_092.json: 1000 products
+Read products_093.json: 1000 products
+Read products_094.json: 1000 products
+Read products_095.json: 1000 products
+Read products_096.json: 1000 products
+Read products_097.json: 1000 products
+Read products_098.json: 1000 products
+Read products_099.json: 1000 products
+Read products_100.json: 1000 products
+Read products_101.json: 1000 products
+Read products_102.json: 1000 products
+Read products_103.json: 1000 products
+Read products_104.json: 1000 products
+Read products_105.json: 1000 products
+Read products_106.json: 1000 products
+Read products_107.json: 1000 products
+Read products_108.json: 1000 products
+Read products_109.json: 1000 products
+Read products_110.json: 1000 products
+Read products_111.json: 1000 products
+Read products_112.json: 1000 products
+Read products_113.json: 1000 products
+Read products_114.json: 1000 products
+Read products_115.json: 1000 products
+Read products_116.json: 1000 products
+Read products_117.json: 1000 products
+Read products_118.json: 1000 products
+Read products_119.json: 1000 products
+Read products_120.json: 1000 products
+Read products_121.json: 1000 products
+Read products_122.json: 1000 products
+Read products_123.json: 1000 products
+Read products_124.json: 1000 products
+Read products_125.json: 299 products
+
+Total products read: 124299
+Inserted 1000/124299 products
+Inserted 2000/124299 products
+Inserted 3000/124299 products
+Inserted 4000/124299 products
+Inserted 5000/124299 products
+Inserted 6000/124299 products
+Inserted 7000/124299 products
+Inserted 8000/124299 products
+Inserted 9000/124299 products
+Inserted 10000/124299 products
+Inserted 11000/124299 products
+Inserted 12000/124299 products
+Inserted 13000/124299 products
+Inserted 14000/124299 products
+Inserted 15000/124299 products
+Inserted 16000/124299 products
+Inserted 17000/124299 products
+Inserted 18000/124299 products
+Inserted 19000/124299 products
+Inserted 20000/124299 products
+Inserted 21000/124299 products
+Inserted 22000/124299 products
+Inserted 23000/124299 products
+Inserted 24000/124299 products
+Inserted 25000/124299 products
+Inserted 26000/124299 products
+Inserted 27000/124299 products
+Inserted 28000/124299 products
+Inserted 29000/124299 products
+Inserted 30000/124299 products
+Inserted 31000/124299 products
+Inserted 32000/124299 products
+Inserted 33000/124299 products
+Inserted 34000/124299 products
+Inserted 35000/124299 products
+Inserted 36000/124299 products
+Inserted 37000/124299 products
+Inserted 38000/124299 products
+Inserted 39000/124299 products
+Inserted 40000/124299 products
+Inserted 41000/124299 products
+Inserted 42000/124299 products
+Inserted 43000/124299 products
+Inserted 44000/124299 products
+Inserted 45000/124299 products
+Inserted 46000/124299 products
+Inserted 47000/124299 products
+Inserted 48000/124299 products
+Inserted 49000/124299 products
+Inserted 50000/124299 products
+Inserted 51000/124299 products
+Inserted 52000/124299 products
+Inserted 53000/124299 products
+Inserted 54000/124299 products
+Inserted 55000/124299 products
+Inserted 56000/124299 products
+Inserted 57000/124299 products
+Inserted 58000/124299 products
+Inserted 59000/124299 products
+Inserted 60000/124299 products
+Inserted 61000/124299 products
+Inserted 62000/124299 products
+Inserted 63000/124299 products
+Inserted 64000/124299 products
+Inserted 65000/124299 products
+Inserted 66000/124299 products
+Inserted 67000/124299 products
+Inserted 68000/124299 products
+Inserted 69000/124299 products
+Inserted 70000/124299 products
+Inserted 71000/124299 products
+Inserted 72000/124299 products
+Inserted 73000/124299 products
+Inserted 74000/124299 products
+Inserted 75000/124299 products
+Inserted 76000/124299 products
+Inserted 77000/124299 products
+Inserted 78000/124299 products
+Inserted 79000/124299 products
+Inserted 80000/124299 products
+Inserted 81000/124299 products
+Inserted 82000/124299 products
+Inserted 83000/124299 products
+Inserted 84000/124299 products
+Inserted 85000/124299 products
+Inserted 86000/124299 products
+Inserted 87000/124299 products
+Inserted 88000/124299 products
+Inserted 89000/124299 products
+Inserted 90000/124299 products
+Inserted 91000/124299 products
+Inserted 92000/124299 products
+Inserted 93000/124299 products
+Inserted 94000/124299 products
+Inserted 95000/124299 products
+Inserted 96000/124299 products
+Inserted 97000/124299 products
+Inserted 98000/124299 products
+Inserted 99000/124299 products
+Inserted 100000/124299 products
+Inserted 101000/124299 products
+Inserted 102000/124299 products
+Inserted 103000/124299 products
+Inserted 104000/124299 products
+Inserted 105000/124299 products
+Inserted 106000/124299 products
+Inserted 107000/124299 products
+Inserted 108000/124299 products
+Inserted 109000/124299 products
+Inserted 110000/124299 products
+Inserted 111000/124299 products
+Inserted 112000/124299 products
+Inserted 113000/124299 products
+Inserted 114000/124299 products
+Inserted 115000/124299 products
+Inserted 116000/124299 products
+Inserted 117000/124299 products
+Inserted 118000/124299 products
+Inserted 119000/124299 products
+Inserted 120000/124299 products
+Inserted 121000/124299 products
+Inserted 122000/124299 products
+Inserted 123000/124299 products
+Inserted 124000/124299 products
+Inserted 124299/124299 products
+Finished loading products.
+
+========================================
+LAB 1 FINISHED
+========================================
+Finished at: 2026-09-28 01:26:31
+Runtime: 00:01:13
+Exit code: 0
+Log file: /home/eve/Desktop/lab1/logs/load_products_20260928_012518.log
+========================================
