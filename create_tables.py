@@ -14,7 +14,9 @@ def create_tables():
     """
 
     try:
-        with psycopg2.connect(**load_config()) as conn:
+	config = load_config()
+	
+        with psycopg2.connect(**config) as conn:
             with conn.cursor() as cur:
                 cur.execute(sql)
         print("Created products table.")

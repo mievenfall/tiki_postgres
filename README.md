@@ -1,3 +1,5 @@
+# Lab 1 - Load Tiki JSON Data into PostgreSQL
+
 ## DoD
 
 Use Python to read all Tiki product data from Project 02 and load it into PostgreSQL.
@@ -6,7 +8,7 @@ Use Python to read all Tiki product data from Project 02 and load it into Postgr
 
 ## Folder Structure
 
-This lab assumes `project2` and `lab1` are sibling folders:
+`project2` and `lab1` are sibling folders:
 
 ```text
 Desktop/
@@ -22,13 +24,11 @@ Desktop/
     ├── database.ini.example
     ├── create_tables.py
     ├── load_products.py
+    ├── delete_products.py
     ├── verify.py
     ├── requirements.txt
     ├── .gitignore
-    ├── README.md
-    ├── scripts/
-    │   └── run.sh
-    └── logs/
+    └── README.md
 ```
 
 The loader reads source data from:
@@ -48,13 +48,13 @@ project2/tiki_crawl/output/products_*.json
                     ↓
              prepare tuples
                     ↓
-       insert in batches of 1000
-                    ↓
-          psycopg2.executemany()
-                    ↓
+          SELECT product by id
+              /         \\
+         exists         not exists
+           ↓                ↓
+        UPDATE            INSERT
+              \\          /
                PostgreSQL
-                    ↓
-               products
 ```
 
 ---
@@ -72,7 +72,7 @@ CREATE TABLE products (
 );
 ```
 
-`images_url` is stored as a PostgreSQL `TEXT[]` because the source field is a list of image URLs.
+`images_url` is stored as PostgreSQL `TEXT[]` because the source field is a Python list of image URLs.
 
 ---
 
@@ -133,11 +133,13 @@ password=YOUR_PASSWORD
 port=5432
 ```
 
-`database.ini` is ignored by Git.
+`database.ini` should not be committed to Git.
 
 ---
 
 ## Create the Table
+
+Run:
 
 ```bash
 python3 create_tables.py
@@ -151,121 +153,134 @@ Created products table.
 
 ---
 
-## Load All Product Data
+## Load Product Data
 
-The loader reads every `products_*.json` file from:
+Run:
 
-```text
-~/Desktop/project2/tiki_crawl/output/
+```bash
+python3 load_products.py
 ```
 
-The current Project 02 output contains:
+The script:
 
-```text
-124299 products
-```
+1. Reads every `products_*.json` file from Project 02.
+2. Converts each product into a Python tuple.
+3. Checks whether the product `id` already exists in PostgreSQL.
+4. Uses `INSERT` for new products.
+5. Uses `UPDATE` for existing products.
+6. Commits progress in batches.
 
-To avoid one very large transaction, the loader inserts products in batches of 1000 rows and commits after each batch.
+This prevents duplicate rows because `id` is the primary key and existing products are updated instead of inserted again.
 
 Example progress:
 
 ```text
-Inserted 1000/124299 products
-Inserted 2000/124299 products
+Processed 1000/124299 | inserted=1000 | updated=0
+Processed 2000/124299 | inserted=2000 | updated=0
 ...
-Inserted 124299/124299 products
-Finished loading products.
 ```
 
----
-
-## Run with Bash Logging
-
-Instead of running `load_products.py` directly, use:
-
-```bash
-chmod +x scripts/run.sh
-./scripts/run.sh
-```
-
-The Bash script:
-
-- activates the local `venv`
-- runs `load_products.py`
-- displays output in the terminal
-- saves both stdout and stderr to a log file
-- records start time, finish time, runtime, and exit code
-
-Logs are written to:
+If the script is run again, existing products are updated:
 
 ```text
-logs/load_products_YYYYMMDD_HHMMSS.log
-```
-
-Example:
-
-```text
-========================================
-LAB 1 - TIKI JSON -> POSTGRESQL
-========================================
-Started at: 2026-09-28 01:23:45
-Project dir: /home/eve/Desktop/lab1
-Log file: /home/eve/Desktop/lab1/logs/load_products_20260928_012345.log
-========================================
-
-Reading JSON files from: /home/eve/Desktop/project2/tiki_crawl/output
+Processed 1000/124299 | inserted=0 | updated=1000
 ...
-Total products read: 124299
-
-Inserted 1000/124299 products
-...
-Inserted 124299/124299 products
-Finished loading products.
-
-========================================
-LAB 1 FINISHED
-========================================
-Runtime: 00:xx:xx
-Exit code: 0
-========================================
 ```
 
 ---
 
 ## Verify the Load
 
-After the loader finishes:
+Run:
 
 ```bash
 python3 verify.py
 ```
 
-Expected row count:
+Expected row count for the current Project 02 output:
 
 ```text
 Products in PostgreSQL: 124299
 ```
 
-The script also prints a few sample rows.
+The script also prints sample rows from the `products` table.
 
 ---
 
-## Important Notes
+## Delete All Product Data
 
-The current loader uses standard `INSERT` statements and `cursor.executemany()` to stay close to the PostgreSQL Python tutorial.
+To remove all rows while keeping the table itself:
 
-Because `id` is the primary key, running the full loader again against an already populated table will cause duplicate-key errors.
-
-For this lab, the intended workflow is:
-
-```text
-create database
-      ↓
-create table
-      ↓
-load data once
-      ↓
-verify
+```bash
+python3 delete_products.py
 ```
 
+The script uses:
 
+```sql
+DELETE FROM products;
+```
+
+and reports the number of deleted rows.
+
+Example:
+
+```text
+Deleted 124299 products.
+```
+
+After deletion:
+
+```bash
+python3 verify.py
+```
+
+should return:
+
+```text
+Products in PostgreSQL: 0
+```
+
+---
+
+## Python Files
+
+### `config.py`
+
+Loads PostgreSQL connection settings from `database.ini`.
+
+### `create_tables.py`
+
+Connects to PostgreSQL and creates the `products` table.
+
+### `load_products.py`
+
+Reads all Project 02 JSON files and loads them into PostgreSQL using:
+
+```text
+SELECT -> INSERT or UPDATE
+```
+
+### `verify.py`
+
+Checks the number of rows in the table and prints sample data.
+
+### `delete_products.py`
+
+Deletes all rows from `products` using Python and SQL `DELETE`.
+
+---
+
+## Concepts Practiced
+
+This lab focuses on the Python/PostgreSQL workflow:
+
+- connect to PostgreSQL with `psycopg2`
+- create tables
+- execute SQL with a cursor
+- query data with `SELECT`
+- insert data with `INSERT`
+- modify existing data with `UPDATE`
+- remove data with `DELETE`
+- commit transactions
+- read query results with `fetchone()` and `fetchall()`
