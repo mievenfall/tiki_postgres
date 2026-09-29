@@ -1,6 +1,6 @@
 [postgresql]
 host=localhost
-database=tiki_lab
+database=lab1
 user=postgres
 password=YOUR_PASSWORD
 port=5432

@@ -13,8 +13,9 @@ def create_tables():
     );
     """
 
+    config = load_config()
+    
     try:
-	config = load_config()
 	
         with psycopg2.connect(**config) as conn:
             with conn.cursor() as cur:
