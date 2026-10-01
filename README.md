@@ -223,7 +223,7 @@ The script also prints sample rows from the `products` table.
 To remove all rows while keeping the table itself:
 
 ```bash
-python3 delete_products.py
+python3 clear_table.py
 ```
 
 The script uses:
@@ -276,7 +276,7 @@ SELECT -> INSERT or UPDATE
 
 Checks the number of rows in the table and prints sample data.
 
-### `delete_products.py`
+### `clear_table.py`
 
 Deletes all rows from `products` using Python and SQL `DELETE`.
 
