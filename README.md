@@ -24,7 +24,7 @@ Desktop/
     ├── database.ini.example
     ├── create_tables.py
     ├── load_products.py
-    ├── delete_products.py
+    ├── clear_table.py
     ├── verify.py
     ├── requirements.txt
     ├── .gitignore
