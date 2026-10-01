@@ -42,19 +42,30 @@ The loader reads source data from:
 ## Data Flow
 
 ```text
-project2/tiki_crawl/output/products_*.json
-                    ↓
-              Python json.load()
-                    ↓
-             prepare tuples
-                    ↓
-          SELECT product by id
-              /         \\
-         exists         not exists
-           ↓                ↓
-        UPDATE            INSERT
-              \\          /
-               PostgreSQL
+products_*.json
+       ↓
+open/read file
+       │
+       ↓
+    parse JSON
+       │
+       ↓
+prepare product data
+       │
+       ↓
+connect to PostgreSQL
+       │
+       ↓
+SELECT product by id
+       │
+    ┌──┴──┐
+    ↓     ↓
+exist    not exists
+    │     │
+    ↓     ↓
+UPDATE   INSERT
+       ↓
+     commit
 ```
 
 ---
